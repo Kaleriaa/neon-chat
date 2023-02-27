@@ -1,28 +1,16 @@
-import { useMessagesStore } from '@entities/message/model'
-import { RequestMessage } from '@entities/message/types/request-message'
-import { getMessages } from '@entities/message/utils/get-messages'
 import { useUserStore } from '@entities/user/model'
 import { sendMessage } from '@features/send-messages'
-import { fireStore } from '@shared/configs/firebase'
 import { COLORS } from '@shared/constants/colors'
 import { Button, TextArea } from '@shared/ui'
 import { ChatMessages } from '@widgets/chat-messages'
-import { collection, Query } from 'firebase/firestore'
 import React from 'react'
+import { serverTimestamp } from 'firebase/firestore'
 import styled from 'styled-components'
 
 export const Chat = () => {
     const [value, setValue] = React.useState<string>('')
-    const user = useUserStore((state) => state.user)
-    const [addMessage, reloadMessages] = useMessagesStore((state) => [
-        state.addMessage,
-        state.reloadMessages,
-    ])
-    const docRef = collection(fireStore, 'messages')
 
-    React.useEffect(() => {
-        getMessages(docRef as Query<RequestMessage>).then(reloadMessages)
-    }, [])
+    const user = useUserStore((state) => state.user)
 
     const handleTextChange = (value: string) => {
         setValue(value)
@@ -35,10 +23,9 @@ export const Chat = () => {
                 displayName: user.displayName,
                 photoURL: user.photoURL,
                 text: value,
-                createdAt: new Date(),
+                createdAt: serverTimestamp(),
             }
             await sendMessage(itemToAdd)
-            addMessage(itemToAdd)
             setValue('')
         }
     }
@@ -55,7 +42,7 @@ export const Chat = () => {
 }
 
 const ChatPage = styled.div`
-    width: 600px;
+    width: 610px;
     height: calc(100vh - 180px);
     background-color: var(${COLORS.secondaryDark});
     margin: 0 auto;
@@ -64,7 +51,6 @@ const ChatPage = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     border-radius: 5px;
-    overflow: auto;
 `
 const Wrapper = styled.div`
     width: 100%;

@@ -5,6 +5,5 @@ import { fireStore } from '@shared/configs/firebase'
 export const sendMessage = async (message: Message) => {
     return await addDoc(collection(fireStore, 'messages'), {
         ...message,
-        createdAt: serverTimestamp(),
     })
 }

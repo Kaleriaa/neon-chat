@@ -2,8 +2,7 @@ import { COLORS } from '@shared/constants/colors'
 import styled from 'styled-components'
 import { Message as MessageType } from '../types'
 
-export const Message: React.FC<MessageType> = (props) => {
-    const user = true
+export const Message: React.FC<MessageType & { isUser: boolean }> = (props) => {
     const avatar = (
         <img
             src={props.photoURL ?? ''}
@@ -12,29 +11,26 @@ export const Message: React.FC<MessageType> = (props) => {
         />
     )
     return (
-        <Block user={user}>
-            {!user && avatar}
-            <Name>{props.displayName}</Name>
-            <Text>{props.text}</Text>
-            {user && avatar}
-        </Block>
+        <MessageBlock>
+            {!props.isUser && avatar}
+            <Text user={props.isUser}>{props.text}</Text>
+            {props.isUser && avatar}
+        </MessageBlock>
     )
 }
-const Block = styled.div<{ user: boolean }>`
-    position: relative;
+const MessageBlock = styled.div`
     display: flex;
     width: fit-content;
-    justify-content: ${(prop) => (prop.user ? 'flex-end' : 'flex-start')};
     align-items: flex-end;
     gap: 10px;
     margin: 8px 0;
 `
-const Text = styled.div`
+const Text = styled.div<{ user: boolean }>`
     max-width: 60%;
-    min-width: 100px;
     height: fit-content;
     padding: 15px 8px;
     font-size: 17px;
+    word-break: break-all;
     --message-shadow: 0 0 7px 4px var(${COLORS.neon.lightGreen}),
         0 0 7px 4px var(${COLORS.neon.lightGreen}) inset;
     --message-shadow-text: 0 0 7px var(${COLORS.neon.green});
@@ -42,16 +38,9 @@ const Text = styled.div`
     background-color: transparent;
     color: #d8d8d8;
     text-shadow: var(--message-shadow-text);
-    border: 2px solid var(${COLORS.neon.green});
+    border: ${(prop) =>
+        prop.user
+            ? `2px solid var(${COLORS.neon.green})`
+            : '2px solid #5e73dc'};
     border-radius: 5px;
-`
-const Name = styled.div`
-    width: fit-content;
-    height: fit-content;
-    background-color: var(${COLORS.secondaryDark});
-    text-shadow: var(--message-shadow-text);
-    color: var(${COLORS.neon.green});
-    position: absolute;
-    top: -12px;
-    right: 12%;
 `
