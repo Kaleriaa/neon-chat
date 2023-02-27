@@ -13,7 +13,11 @@ export const Message: React.FC<MessageType & { isUser: boolean }> = (props) => {
     return (
         <MessageBlock>
             {!props.isUser && avatar}
-            <Text user={props.isUser}>{props.text}</Text>
+            <Text user={props.isUser}>
+                <span>{props.displayName}</span>
+                <br />
+                {props.text}
+            </Text>
             {props.isUser && avatar}
         </MessageBlock>
     )
@@ -23,24 +27,23 @@ const MessageBlock = styled.div`
     width: fit-content;
     align-items: flex-end;
     gap: 10px;
-    margin: 8px 0;
 `
 const Text = styled.div<{ user: boolean }>`
-    max-width: 60%;
+    max-width: 350px;
+    width: fit-content;
     height: fit-content;
     padding: 15px 8px;
     font-size: 17px;
     word-break: break-all;
-    --message-shadow: 0 0 7px 4px var(${COLORS.neon.lightGreen}),
-        0 0 7px 4px var(${COLORS.neon.lightGreen}) inset;
-    --message-shadow-text: 0 0 7px var(${COLORS.neon.green});
-    height: fit-content;
     background-color: transparent;
     color: #d8d8d8;
-    text-shadow: var(--message-shadow-text);
-    border: ${(prop) =>
-        prop.user
-            ? `2px solid var(${COLORS.neon.green})`
-            : '2px solid #5e73dc'};
+    text-shadow: 0 0 7px var(${COLORS.neon.green});
+    border: 2px solid
+        ${({ user }) => (user ? `var(${COLORS.neon.green})` : '#5e73dc')};
     border-radius: 5px;
+    span {
+        font-weight: 600;
+        font-size: 14px;
+        text-shadow: none;
+    }
 `

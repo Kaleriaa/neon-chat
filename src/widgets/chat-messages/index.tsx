@@ -15,7 +15,7 @@ export const ChatMessages = () => {
     return (
         <Wrapper>
             {messages?.map((item, i) => {
-                const isUser = item.uid === user?.uid ? true : false
+                const isUser = item.uid === user?.uid
                 return (
                     <Block key={i} isUser={isUser}>
                         <Message
@@ -36,10 +36,12 @@ const Block = styled.div<{ isUser: boolean }>`
     width: 100%;
     display: flex;
     flex-direction: ${(prop) => (prop.isUser ? 'row-reverse' : 'row')};
+    justify-content: flex-start;
 `
 const Wrapper = styled.div`
     overflow-y: auto;
     width: 100%;
+    padding: 10px;
     height: calc(100% - 94px);
     display: flex;
     justify-content: flex-start;
