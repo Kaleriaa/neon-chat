@@ -1,6 +1,7 @@
 import { COLORS } from '@shared/constants/colors'
 import styled from 'styled-components'
 import { Message as MessageType } from '../types'
+import { toDateTime } from '../utils/getTimeFromSec'
 
 export const Message: React.FC<MessageType & { isUser: boolean }> = (props) => {
     const avatar = (
@@ -10,6 +11,7 @@ export const Message: React.FC<MessageType & { isUser: boolean }> = (props) => {
             style={{ borderRadius: '50%' }}
         />
     )
+    const date = toDateTime(props.createdAt?.seconds).toLocaleString()
     return (
         <MessageBlock>
             {!props.isUser && avatar}
@@ -17,6 +19,8 @@ export const Message: React.FC<MessageType & { isUser: boolean }> = (props) => {
                 <span>{props.displayName}</span>
                 <br />
                 {props.text}
+                <br />
+                <span>{date}</span>
             </Text>
             {props.isUser && avatar}
         </MessageBlock>
@@ -32,18 +36,20 @@ const Text = styled.div<{ user: boolean }>`
     max-width: 350px;
     width: fit-content;
     height: fit-content;
-    padding: 15px 8px;
+    padding: 8px 8px;
     font-size: 17px;
     word-break: break-all;
     background-color: transparent;
-    color: #d8d8d8;
+    color: #e3e3e3;
+    line-height: 24px;
     text-shadow: 0 0 7px var(${COLORS.neon.green});
     border: 2px solid
         ${({ user }) => (user ? `var(${COLORS.neon.green})` : '#5e73dc')};
     border-radius: 5px;
     span {
-        font-weight: 600;
+        font-weight: 400;
         font-size: 14px;
         text-shadow: none;
+        color: #b9b9b9;
     }
 `
