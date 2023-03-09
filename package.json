@@ -2,11 +2,14 @@
   "name": "my-chat",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://Kaleriaa.github.io/neon-chat",
   "type": "module",
   "scripts": {
     "start": "vite --open",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "firebase": "^9.17.1",
@@ -24,6 +27,7 @@
     "@types/react-dom": "^18.0.10",
     "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^3.1.0",
+    "gh-pages": "^5.0.0",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
     "vite-tsconfig-paths": "^4.0.5"
