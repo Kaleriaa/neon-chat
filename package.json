@@ -2,7 +2,7 @@
   "name": "my-chat",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://Kaleriaa.github.io/neon-chat",
+  "homepage": "https://kaleriaa.github.io/neon-chat/",
   "type": "module",
   "scripts": {
     "start": "vite --open",
