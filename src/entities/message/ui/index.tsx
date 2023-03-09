@@ -1,6 +1,6 @@
 import { COLORS } from '@shared/constants/colors'
 import styled from 'styled-components'
-import { Message as MessageType } from '../types'
+import { Message as MessageType, Date } from '../types'
 import { toDateTime } from '../utils/getTimeFromSec'
 
 export const Message: React.FC<MessageType & { isUser: boolean }> = (props) => {
@@ -11,7 +11,7 @@ export const Message: React.FC<MessageType & { isUser: boolean }> = (props) => {
             style={{ borderRadius: '50%' }}
         />
     )
-    const date = toDateTime(props.createdAt?.seconds).toLocaleString()
+    const date = toDateTime((props.createdAt as Date)?.seconds).toLocaleString()
     return (
         <MessageBlock>
             {!props.isUser && avatar}

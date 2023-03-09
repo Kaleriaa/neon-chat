@@ -1,6 +1,6 @@
 import { FieldValue } from 'firebase/firestore'
 
-type Date = {
+export type Date = {
     seconds: number
     nanoseconds: number
 }
