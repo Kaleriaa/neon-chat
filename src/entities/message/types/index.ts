@@ -10,5 +10,5 @@ export type Message = {
     photoURL: string | null
     displayName: string | null
     text: string
-    createdAt: Date | FieldValue | any
+    createdAt: Date | FieldValue
 }
