@@ -6,6 +6,7 @@ import { useLogin } from '@features/login/utils'
 
 export const LoginBlock = () => {
     const login = useLogin()
+
     return (
         <Block>
             <Label onClick={login}>Войти с помощью Google</Label>

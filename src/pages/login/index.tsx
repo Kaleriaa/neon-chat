@@ -9,4 +9,3 @@ export const Login = () => {
         </Layout>
     )
 }
-//TODO: redirect to main page

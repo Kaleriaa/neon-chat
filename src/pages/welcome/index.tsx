@@ -1,17 +1,30 @@
+import React from 'react'
 import { Layout } from '@pages/constants/page-layout'
 import { AiFillWechat } from 'react-icons/ai'
-import React from 'react'
 import styled from 'styled-components'
 import { COLORS } from '@shared/constants/colors'
+import { Link } from 'react-router-dom'
+import { LinkMainPage } from '@shared/ui/link'
+import { useUserStore } from '@entities/user/model'
 
 export const Welcome = () => {
+    const user = useUserStore((state) => state.user)
+
     return (
-        <Layout>
-            <Title>neon-chatik</Title>
-            <AiFillWechat fontSize="85px" />
-        </Layout>
+        <Column>
+            <Title>
+                neon-chatik <AiFillWechat fontSize="85px" />
+            </Title>
+            <Link to={user ? '/neon-chat/chat' : '/neon-chat/login'}>
+                <LinkMainPage>{user ? 'В чатик >' : 'Войти >'}</LinkMainPage>
+            </Link>
+        </Column>
     )
 }
+
+const Column = styled(Layout)`
+    flex-direction: column;
+`
 
 const Title = styled.span`
     font-size: 58px;
