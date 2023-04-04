@@ -53,10 +53,12 @@ const ChatPage = styled.div`
     border-radius: 5px;
     @media (max-width: 650px) {
         width: fit-content;
-        height: calc(100vh - 150px);
+        height: calc(100vh - 200px);
     }
-    @media (max-width: 376px) {
-        width: 300px;
+    @media (max-width: 391px) {
+        width: 330px;
+        padding: 10px;
+        height: 505px;
     }
 `
 const Wrapper = styled.div`

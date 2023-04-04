@@ -36,4 +36,7 @@ const Title = styled.span`
         font-size: 48px;
         text-align: center;
     }
+    @media (max-width: 380px) {
+        font-size: 42px;
+    }
 `
