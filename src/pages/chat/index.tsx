@@ -51,6 +51,13 @@ const ChatPage = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     border-radius: 5px;
+    @media (max-width: 650px) {
+        width: fit-content;
+        height: calc(100vh - 150px);
+    }
+    @media (max-width: 376px) {
+        width: 300px;
+    }
 `
 const Wrapper = styled.div`
     width: 100%;

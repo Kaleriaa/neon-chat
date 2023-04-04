@@ -27,4 +27,14 @@ const Neon = styled.button`
         color: var(${COLORS.neon.shadowBright});
         border-color: var(${COLORS.neon.shadowBright});
     }
+    @media (max-width: 650px) {
+        font-size: 12px;
+    }
+    @media (max-width: 410px) {
+        font-size: 11px;
+        padding: 5px;
+    }
+    @media (max-width: 376px) {
+        padding: 3px;
+    }
 `

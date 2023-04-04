@@ -27,4 +27,10 @@ const DarkTextArea = styled.textarea`
     border-radius: 5px;
     outline: none;
     padding: 12px 20px;
+    @media (max-width: 650px) {
+        width: 75%;
+    }
+    @media (max-width: 410px) {
+        width: 70%;
+    }
 `

@@ -32,4 +32,8 @@ const Title = styled.span`
     letter-spacing: 6%;
     text-shadow: 0 0 12px var(${COLORS.neon.lightGreen});
     color: rgb(188, 220, 210);
+    @media (max-width: 490px) {
+        font-size: 48px;
+        text-align: center;
+    }
 `

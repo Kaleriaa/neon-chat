@@ -52,4 +52,12 @@ const Text = styled.div<{ user: boolean }>`
         text-shadow: none;
         color: #b9b9b9;
     }
+    @media (max-width: 490px) {
+        max-width: 280px;
+        font-size: 15px;
+        span {
+            font-size: 12px;
+        }
+        padding: 5px;
+    }
 `
